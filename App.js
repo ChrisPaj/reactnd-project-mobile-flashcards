@@ -4,13 +4,14 @@ import Decks from "./components/Decks"
 import DeckView from "./components/DeckView"
 import QuizView from "./components/QuizView"
 import NewDeck from "./components/NewDeck"
+import NewQuestion from "./components/NewQuestion"
 
 export default class App extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <NewDeck />
+        <NewQuestion />
       </View>
     );
   }
