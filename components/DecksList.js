@@ -20,7 +20,7 @@ class DecksList extends Component {
         <FlatList
           data={data}
           renderItem={this._renderItem}
-		  keyExtractor={this._keyExtractor}
+		      keyExtractor={this._keyExtractor}
         />
       </View>
     );
