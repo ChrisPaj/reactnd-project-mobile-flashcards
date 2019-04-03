@@ -13,7 +13,8 @@ class DecksList extends Component {
   )
   render() {
     var data = new Array();
-    Object.keys(firstStore).map(deck => data.push(firstStore[deck]));
+	Object.keys(firstStore).map(deck => data.push(firstStore[deck]));
+	console.log(data.length)
     return (
       <View style={styles.container}>
         <FlatList
@@ -29,9 +30,6 @@ class DecksList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
   }
 });
 
