@@ -10,8 +10,12 @@ class DeckView extends Component {
           <Text>6 Questions</Text>
         </View>
         <View>
-          <TouchableOpacity><Text>Add Question</Text></TouchableOpacity>
-          <TouchableOpacity><Text>Start Quiz</Text></TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Add Question</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text>Start Quiz</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -20,7 +24,7 @@ class DeckView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   }
 });
 

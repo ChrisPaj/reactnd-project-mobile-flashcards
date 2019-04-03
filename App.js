@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Decks from "./components/Decks"
 import DeckView from "./components/DeckView"
+import QuizView from "./components/QuizView"
 
 export default class App extends React.Component {
 
@@ -9,7 +10,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Decks />
-        <DeckView />
+        <QuizView />
       </View>
     );
   }
