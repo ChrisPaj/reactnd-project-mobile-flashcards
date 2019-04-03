@@ -3,14 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import Decks from "./components/Decks"
 import DeckView from "./components/DeckView"
 import QuizView from "./components/QuizView"
+import NewDeck from "./components/NewDeck"
 
 export default class App extends React.Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Decks />
-        <QuizView />
+        <NewDeck />
       </View>
     );
   }
