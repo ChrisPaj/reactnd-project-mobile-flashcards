@@ -1,7 +1,7 @@
 import { RECEIVE_DATA, ADD_QUESTION, ADD_DECK } from "../actions";
 import { getAsyncStorage } from "../utils/helpers";
-var defaultStore = {}
-getAsyncStorage().then(data => defaultStore = data)
+var defaultStore = {};
+getAsyncStorage().then(data => (defaultStore = data));
 
 export default function flashcardReducers(state = defaultStore, action) {
   switch (action.type) {
@@ -11,7 +11,14 @@ export default function flashcardReducers(state = defaultStore, action) {
       };
     case ADD_QUESTION:
       return {
-        ...state
+        ...state,
+        [action.deck]: {
+          ...state[action.deck],
+          questions: {
+            ...state[action.deck].questions,
+            ...action.question
+          }
+        }
       };
     case ADD_DECK:
       return {
