@@ -6,10 +6,6 @@ import DeckItem from "./DeckItem";
 import { receiveData } from "../actions"
 
 class DecksList extends Component {
-  componentDidMount(){
-    this.props.dispatch(receiveData())
-
-  }
   _keyExtractor = (item) => item.title;
   _renderItem = ({ item }) => (
 	<DeckItem
@@ -21,7 +17,7 @@ class DecksList extends Component {
   const { entries } = this.props
   var data = new Array();
 	Object.keys(entries).map(deck => data.push(entries[deck]));
-	console.log(this.props.entries)
+	//console.log(this.props.entries)
     return (
       <View style={styles.container}>
         <FlatList

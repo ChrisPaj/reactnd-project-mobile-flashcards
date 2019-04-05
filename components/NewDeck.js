@@ -8,8 +8,22 @@ class NewDeck extends React.Component {
     deckTitle: ""
   };
   handleAddDeck = () => {
-    this.props.testDispatch()
-    console.log("storeNewDeck: ", this.props.entries);
+    this.props.addDeck({
+      lalalala: {
+        title: "Psychology",
+        questions: [
+          {
+            question: "What does ABC mean?",
+            answer:
+              "ABC"
+          },
+          {
+            question: "Who is the founder of Psychology",
+            answer: "Charles Psychology"
+          }
+        ]
+      }
+    })
   }
   render() {
     return (
@@ -35,8 +49,8 @@ function mapStateToProps(entries) {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-   testDispatch: () => {
-     dispatch(changeDeckTitle("Biodoof"))
+   addDeck: (deck) => {
+     dispatch(addDeck(deck))
    }
   }
  }

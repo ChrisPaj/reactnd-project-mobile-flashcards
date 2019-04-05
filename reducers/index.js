@@ -26,7 +26,10 @@ export default function flashcardReducers(state = defaultStore, action) {
         React: action.title
       };
     case ADD_DECK:
-      return  Object.assign({}, state, action.deck);
+	  return  {
+		  ...state,
+		  ...action.deck
+	}
     default:
       return state;
   }
