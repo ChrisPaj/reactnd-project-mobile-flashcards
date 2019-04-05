@@ -10,6 +10,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import logger from "./middleware/logger"
+import { firstStore } from "./utils/firstStore"
 import DeckView from "./components/DeckView";
 import QuizView from "./components/QuizView";
 import NewDeck from "./components/NewDeck";
@@ -17,7 +18,7 @@ import NewQuestion from "./components/NewQuestion";
 
 export default class App extends React.Component {
   componentDidMount() {
-    setAsyncStorage();
+    //setAsyncStorage();
     //delAsyncStorage();
   }
 

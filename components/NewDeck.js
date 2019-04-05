@@ -8,22 +8,7 @@ class NewDeck extends React.Component {
     deckTitle: ""
   };
   handleAddDeck = () => {
-    this.props.addDeck({
-      lalalala: {
-        title: "Psychology",
-        questions: [
-          {
-            question: "What does ABC mean?",
-            answer:
-              "ABC"
-          },
-          {
-            question: "Who is the founder of Psychology",
-            answer: "Charles Psychology"
-          }
-        ]
-      }
-    })
+    this.props.addDeck()
   }
   render() {
     return (
@@ -49,8 +34,8 @@ function mapStateToProps(entries) {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-   addDeck: (deck) => {
-     dispatch(addDeck(deck))
+   addDeck: () => {
+     dispatch(addDeck())
    }
   }
  }

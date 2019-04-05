@@ -4,7 +4,7 @@ import { firstStore } from "./firstStore"
 const keyAsyncStorage = "test"
 
 export const setAsyncStorage = () => {
-AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(firstStore))
+return AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(firstStore))
 }
 
 export const delAsyncStorage = () => {
@@ -15,4 +15,8 @@ export const delAsyncStorage = () => {
 export const getAsyncStorage = () => {
 	return AsyncStorage.getItem(keyAsyncStorage)
 	.then(result => JSON.parse(result))
+	}
+
+	export const initStore = () => {
+		return firstStore
 	}

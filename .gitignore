@@ -6,3 +6,4 @@ npm-debug.*
 *.key
 *.mobileprovision
 Test.js
+test.js
