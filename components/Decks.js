@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { StyleSheet, Text, View } from 'react-native';
 import DeckList from "./DecksList"
+import NewDeck from "./NewDeck";
 
 class Decks extends Component {
 	render() {
@@ -8,6 +9,7 @@ class Decks extends Component {
 			<View style={styles.container}>
 				<Text>Decks</Text>
 				<DeckList />
+				<NewDeck />
 			</View>
 		)
 	}

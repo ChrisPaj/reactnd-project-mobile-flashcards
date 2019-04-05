@@ -1,4 +1,4 @@
-import { RECEIVE_DATA, ADD_QUESTION, ADD_DECK } from "../actions";
+import { RECEIVE_DATA, ADD_QUESTION, ADD_DECK, CHANGE_DECK_TITLE } from "../actions";
 import { getAsyncStorage } from "../utils/helpers";
 var defaultStore = {};
 getAsyncStorage().then(data => (defaultStore = data));
@@ -19,12 +19,14 @@ export default function flashcardReducers(state = defaultStore, action) {
             ...action.question
           }
         }
-      };
-    case ADD_DECK:
+	  };
+	  case CHANGE_DECK_TITLE:
       return {
         ...state,
-        ...action.deck
+        React: action.title
       };
+    case ADD_DECK:
+      return  Object.assign({}, state, action.deck);
     default:
       return state;
   }

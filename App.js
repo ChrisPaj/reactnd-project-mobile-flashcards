@@ -6,9 +6,10 @@ import {
   getAsyncStorage,
   delAsyncStorage
 } from "./utils/helpers";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
+import logger from "./middleware/logger"
 import DeckView from "./components/DeckView";
 import QuizView from "./components/QuizView";
 import NewDeck from "./components/NewDeck";
@@ -25,7 +26,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <Provider store={createStore(reducer)}> 
+      <Provider store={createStore(reducer, applyMiddleware(logger))}> 
         <View style={styles.container}>
           <Decks />
           <TouchableOpacity>

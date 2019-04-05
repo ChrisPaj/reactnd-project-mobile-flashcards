@@ -53,5 +53,19 @@ export const firstStore = {
         answer: "Charles Darwin"
       }
     ]
+  },
+  Psychology: {
+    title: "Psychology",
+    questions: [
+      {
+        question: "What does ABC mean?",
+        answer:
+          "ABC"
+      },
+      {
+        question: "Who is the founder of Psychology",
+        answer: "Charles Psychology"
+      }
+    ]
   }
 };

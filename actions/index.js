@@ -1,6 +1,7 @@
 const RECEIVE_DATA = "RECEIVE_DATA"
 const ADD_QUESTION = "ADD_QUESTION"
 const ADD_DECK = "ADD_DECK"
+const CHANGE_DECK_TITLE = "CHANGE_DECK_TITLE"
 
 export function receiveData(){
 	return {
@@ -19,5 +20,12 @@ export function addDeck(deck){
 	return {
 		type: ADD_DECK,
 		deck
+	}
+}
+
+export function changeDeckTitle(title){
+	return {
+		type: CHANGE_DECK_TITLE,
+		title
 	}
 }

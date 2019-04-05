@@ -18,8 +18,9 @@ class DecksList extends Component {
 	/>
   )
   render() {
-    var data = new Array();
-	Object.keys(firstStore).map(deck => data.push(firstStore[deck]));
+  const { entries } = this.props
+  var data = new Array();
+	Object.keys(entries).map(deck => data.push(entries[deck]));
 	console.log(this.props.entries)
     return (
       <View style={styles.container}>
