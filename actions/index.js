@@ -1,7 +1,7 @@
-const RECEIVE_DATA = "RECEIVE_DATA"
-const ADD_QUESTION = "ADD_QUESTION"
-const ADD_DECK = "ADD_DECK"
-const CHANGE_DECK_TITLE = "CHANGE_DECK_TITLE"
+export const RECEIVE_DATA = "RECEIVE_DATA"
+export const ADD_QUESTION = "ADD_QUESTION"
+export const ADD_DECK = "ADD_DECK"
+export const CHANGE_DECK_TITLE = "CHANGE_DECK_TITLE"
 
 export function receiveData(data){
 	return {

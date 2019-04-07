@@ -17,11 +17,7 @@ import NewDeck from "./components/NewDeck";
 import NewQuestion from "./components/NewQuestion";
 
 export default class App extends React.Component {
-  componentDidMount() {
-    //setAsyncStorage();
-    //delAsyncStorage();
-  }
-
+  
   showAsyncStorage() {
     getAsyncStorage().then(data => console.log(data));
   }
