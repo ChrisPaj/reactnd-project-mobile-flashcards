@@ -6,10 +6,10 @@ class QuizView extends Component {
     showQuestion: true
   };
   toggleQuestionAnswer = () => {
-	  this.setState(prevState => ({showQuestion: !prevState.showQuestion}))
-  }
+    this.setState(prevState => ({ showQuestion: !prevState.showQuestion }));
+  };
   render() {
-  const showQuestionOrAnswer = this.state.showQuestion ? (
+    const showQuestionOrAnswer = this.state.showQuestion ? (
       <View>
         <Text>This is a Question</Text>
         <TouchableOpacity onPress={this.toggleQuestionAnswer}>
@@ -28,7 +28,7 @@ class QuizView extends Component {
       <View style={styles.container}>
         <View>
           <Text>2 from 2</Text>
-			{showQuestionOrAnswer}
+          {showQuestionOrAnswer}
         </View>
         <View>
           <TouchableOpacity>

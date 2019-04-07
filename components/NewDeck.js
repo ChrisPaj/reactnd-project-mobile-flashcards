@@ -1,15 +1,22 @@
 import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
-import { connect } from "react-redux"
-import { addDeck, changeDeckTitle } from "../actions"
+import { connect } from "react-redux";
+import { addDeck } from "../actions";
 
 class NewDeck extends React.Component {
   state = {
     deckTitle: ""
   };
   handleAddDeck = () => {
-    this.props.addDeck()
-  }
+    const { addDeck } = this.props;
+    const { deckTitle } = this.state;
+    addDeck({
+      [deckTitle]: {
+        title: deckTitle,
+        questions: []
+      }
+    });
+  };
   render() {
     return (
       <View>
@@ -30,14 +37,17 @@ class NewDeck extends React.Component {
 function mapStateToProps(entries) {
   return {
     entries
-  }
+  };
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-   addDeck: () => {
-     dispatch(addDeck())
-   }
-  }
- }
+    addDeck: deck => {
+      dispatch(addDeck(deck));
+    }
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewDeck)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewDeck);
