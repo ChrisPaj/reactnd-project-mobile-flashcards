@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
+import { saveDeckTitle } from "../utils/helpers";
 
 class NewDeck extends React.Component {
   state = {
@@ -10,23 +11,27 @@ class NewDeck extends React.Component {
   handleAddDeck = () => {
     const { addDeck } = this.props;
     const { deckTitle } = this.state;
-    addDeck({
+    const deck = {
       [deckTitle]: {
         title: deckTitle,
         questions: []
       }
-    });
+    };
+    saveDeckTitle(deck);
+    addDeck(deck);
   };
   render() {
     return (
       <View>
         <Text>What is the title of your new deck?</Text>
         <TextInput
-          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          style={{ borderWidth: 1 }}
           onChangeText={deckTitle => this.setState({ deckTitle })}
           value={this.state.deckTitle}
         />
-        <TouchableOpacity onPress={this.handleAddDeck}>
+        <TouchableOpacity 
+        onPress={this.handleAddDeck}
+        style={this.state.deckTitle === "" && { display: "none" }}>
           <Text>Add Deck</Text>
         </TouchableOpacity>
       </View>

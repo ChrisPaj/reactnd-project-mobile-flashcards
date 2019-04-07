@@ -17,9 +17,12 @@ import NewDeck from "./components/NewDeck";
 import NewQuestion from "./components/NewQuestion";
 
 export default class App extends React.Component {
-  
+
   showAsyncStorage() {
     getAsyncStorage().then(data => console.log(data));
+  }
+  deleteAsyncStorage() {
+    delAsyncStorage()
   }
   render() {
     return (
@@ -29,6 +32,11 @@ export default class App extends React.Component {
           <TouchableOpacity>
             <Text onPress={this.showAsyncStorage}>
               Click to show AsyncStorage
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text onPress={this.deleteAsyncStorage}>
+              Delete AsyncStorage
             </Text>
           </TouchableOpacity>
         </View>

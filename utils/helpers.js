@@ -1,10 +1,12 @@
 import { AsyncStorage } from "react-native"
 import { firstStore } from "./firstStore"
 
-const keyAsyncStorage = "test"
+const keyAsyncStorage = "mobile:flashcards"
 
 export const setAsyncStorage = () => {
-return AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(firstStore))
+AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(firstStore))
+return firstStore
+
 }
 
 export const delAsyncStorage = () => {
@@ -15,8 +17,12 @@ export const delAsyncStorage = () => {
 export const getAsyncStorage = () => {
 	return AsyncStorage.getItem(keyAsyncStorage)
 	.then(result => JSON.parse(result))
+	.catch(error => console.log(error))
 	}
 
-	export const initStore = () => {
-		return firstStore
-	}
+export const saveDeckTitle = (deck) => {
+	getAsyncStorage()
+	.then(result => Object.assign(result, deck))
+	.then(result => AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(result)))
+	.catch(error => console.log(error))
+}
