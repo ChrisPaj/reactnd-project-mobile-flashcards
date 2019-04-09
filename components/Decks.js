@@ -19,7 +19,6 @@ class Decks extends Component {
       <View style={styles.container}>
         <Text>Decks</Text>
         <DeckList />
-        <NewDeck />
       </View>
     );
   }
