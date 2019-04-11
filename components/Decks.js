@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux"
-import DeckList from "./DecksList";
+import DecksList from "./DecksList";
 import NewDeck from "./NewDeck";
 import { getAsyncStorage, setAsyncStorage } from "../utils/helpers";
 import { receiveData } from "../actions"
@@ -18,7 +18,7 @@ class Decks extends Component {
     return (
       <View style={styles.container}>
         <Text>Decks</Text>
-        <DeckList />
+        <DecksList navigation={this.props.navigation}/>
       </View>
     );
   }

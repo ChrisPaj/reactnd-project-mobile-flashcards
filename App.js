@@ -1,24 +1,28 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Platform } from "react-native";
+import { StyleSheet, View, Platform, StatusBar, Text, Button } from "react-native";
 import Decks from "./components/Decks";
-import {
-  setAsyncStorage,
-  getAsyncStorage,
-  delAsyncStorage
-} from "./utils/helpers";
+import DecksList from "./components/DecksList";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import reducer from "./reducers";
 import logger from "./middleware/logger"
 import { createStackNavigator, createAppContainer, createBottomTabNavigator } from "react-navigation";
-import { purple, white } from "./utils/colors";
+import { purple, white, orange } from "./utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { firstStore } from "./utils/firstStore"
 import Options from "./components/Options";
 import DeckView from "./components/DeckView";
 import QuizView from "./components/QuizView";
-import NewDeck from "./components/NewDeck";
 import NewQuestion from "./components/NewQuestion";
+import NewDeck from "./components/NewDeck";
+import { Constants } from "expo"
+
+function UdaciStatusBar({ backgroundColor, ...props }) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+}
 
 const Tabs = createBottomTabNavigator(
   {
@@ -74,9 +78,12 @@ const Tabs = createBottomTabNavigator(
 const MainNavigator = createAppContainer(createStackNavigator({
   Home: {
     screen: Tabs,
-    navigationOptions: {
-      header: null,
-    },
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
   },
   DeckView: {
     screen: DeckView,
@@ -87,21 +94,58 @@ const MainNavigator = createAppContainer(createStackNavigator({
       },
     }),
   },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
+  NewQuestion: {
+    screen: NewQuestion,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
+  DecksList: {
+    screen: DecksList,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
+  Decks: {
+    screen: Decks,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
+  QuizView: {
+    screen: QuizView,
+    navigationOptions: ({ navigation }) => ({
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      },
+    }),
+  },
 }));
 
-export default class App extends React.Component {
-
-  showAsyncStorage() {
-    getAsyncStorage().then(data => console.log(data));
-  }
-  deleteAsyncStorage() {
-    delAsyncStorage()
-  }
-
-  
+export default class App extends React.Component {  
   render() {
     return (
       <Provider store={createStore(reducer, applyMiddleware(logger))}> 
+        <UdaciStatusBar backgroundColor={purple} barStyle="light-content"/>
         <MainNavigator />
       </Provider>
     );

@@ -28,6 +28,11 @@ export default class Options extends React.Component {
 				Delete AsyncStorage
 			  </Text>
 			</TouchableOpacity>
+			<TouchableOpacity onPress={() => this.props.navigation.push("DecksList")}>
+			<Text>
+				Move to New Deck
+			</Text>
+			</TouchableOpacity>
 		  </View>
 	  );
 	}

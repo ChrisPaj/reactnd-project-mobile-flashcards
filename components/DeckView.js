@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { connect } from "react-redux";
 
 class DeckView extends Component {
   render() {
+    const { navigation } = this.props;
+    const deckInfo = navigation.getParam('deckInfo', 'NO-ID');
     return (
       <View style={styles.container}>
         <View>
-          <Text>Biology</Text>
-          <Text>6 Questions</Text>
+          <Text>{deckInfo.title}</Text>
+          <Text>{`${deckInfo.questions.length} Questions`}</Text>
         </View>
         <View>
-          <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("NewQuestion", { deckTitle: deckInfo.title})}>
             <Text>Add Question</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("QuizView", { deckTitle: deckInfo.title})}>
             <Text>Start Quiz</Text>
           </TouchableOpacity>
         </View>

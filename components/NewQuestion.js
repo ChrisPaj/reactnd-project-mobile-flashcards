@@ -1,12 +1,14 @@
 import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 
-export default class NewDeck extends React.Component {
+class NewQuestion extends React.Component {
   state = {
     question: "",
     answer: ""
   };
   render() {
+    const { navigation } = this.props;
+    const deckTitle = navigation.getParam('deckTitle', 'NO-ID');
     return (
       <View>
         <TextInput
@@ -21,10 +23,14 @@ export default class NewDeck extends React.Component {
           value={this.state.answer}
           placeholder={"enter your answer here"}
         />
-        <TouchableOpacity>
+        <TouchableOpacity
+        onPress={this.handleAddDeck}
+        style={(this.state.question === "" || this.state.answer === "") && { display: "none" }}>
           <Text>Submit</Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
+
+export default NewQuestion

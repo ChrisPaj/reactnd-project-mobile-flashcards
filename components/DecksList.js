@@ -1,26 +1,34 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Button,
+  View,
+  FlatList,
+  TouchableOpacity,
+  Text
+} from "react-native";
 import { connect } from "react-redux";
 import DeckItem from "./DeckItem";
 
 class DecksList extends Component {
-  _keyExtractor = (item) => item.title;
+  _keyExtractor = item => item.title;
   _renderItem = ({ item }) => (
-	<DeckItem
-	  title={item.title}
-	  questions={item.questions.length}			
-	/>
-  )
+    <View>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate("DeckView", {deckInfo: item})}>
+        <DeckItem title={item.title} NoOfQuestions={item.questions.length} />
+      </TouchableOpacity>
+    </View>
+  );
   render() {
-  const { entries } = this.props
-  var data = new Array();
-	Object.keys(entries).map(deck => data.push(entries[deck]));
+    const { entries } = this.props;
+    var data = new Array();
+    Object.keys(entries).map(deck => data.push(entries[deck]));
     return (
       <View style={styles.container}>
         <FlatList
           data={data}
           renderItem={this._renderItem}
-		      keyExtractor={this._keyExtractor}
+          keyExtractor={this._keyExtractor}
         />
       </View>
     );
@@ -29,7 +37,7 @@ class DecksList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   }
 });
 

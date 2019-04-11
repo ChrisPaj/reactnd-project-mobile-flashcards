@@ -5,7 +5,7 @@ export default function DeckItem(props) {
   return (
     <View>
       <Text>{props.title}</Text>
-      <Text>{props.questions + " Questions"}</Text>
+      <Text>{props.NoOfQuestions + " Questions"}</Text>
     </View>
   );
 }
