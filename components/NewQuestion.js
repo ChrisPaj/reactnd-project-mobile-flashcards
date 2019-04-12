@@ -19,6 +19,7 @@ class NewQuestion extends React.Component {
       question: "",
       answer: ""
     });
+    navigation.navigate("DeckView", {deckTitle: deckTitle})
   };
   render() {
     return (
