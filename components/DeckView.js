@@ -1,12 +1,24 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
+import { deleteDeck } from "../actions";
 
 class DeckView extends Component {
+  shouldComponentUpdate(){
+    return false
+  }
+  handleDeleteDeck = () => {
+    const { navigation, delDeck } = this.props;
+    const deckTitle = navigation.getParam("deckTitle", "NO-ID");
+    //console.log("deckTitle", deckTitle)
+    delDeck(deckTitle)
+    navigation.navigate("Decks")
+    
+  }
   render() {
     const { navigation, entries } = this.props;
-    const deckTitle = navigation.getParam('deckTitle', 'NO-ID');
-    const deckInfo = entries[deckTitle]
+    const deckTitle = navigation.getParam("deckTitle", "NO-ID");
+    const deckInfo = entries[deckTitle];
     return (
       <View style={styles.container}>
         <View>
@@ -14,15 +26,25 @@ class DeckView extends Component {
           <Text>{`${deckInfo.questions.length} Questions`}</Text>
         </View>
         <View>
-        <TouchableOpacity onPress={() => navigation.navigate("NewQuestion", { deckTitle: deckInfo.title})}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("NewQuestion", { deckTitle: deckInfo.title })
+            }
+          >
             <Text>Add Question</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("QuizView", { deckTitle: deckInfo.title})}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("QuizView", { deckTitle: deckInfo.title })
+            }
+          >
             <Text>Start Quiz</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <Text>Delete Deck</Text>
+          <TouchableOpacity onPress={this.handleDeleteDeck}>
+            <Text>Delete Deck</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -35,9 +57,20 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (entries) => {
+const mapStateToProps = entries => {
   return {
     entries
-  }}
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    delDeck: deckTitle => {
+      dispatch(deleteDeck(deckTitle));
+    }
+  };
+};
 
-export default connect(mapStateToProps)(DeckView)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckView);

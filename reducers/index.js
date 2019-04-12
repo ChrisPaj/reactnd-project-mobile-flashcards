@@ -32,7 +32,12 @@ export default function flashcardReducers(state = {}, action) {
     case ADD_DECK:
       return Object.assign({}, state, action.deck);
     case DELETE_DECK:
-      return Object.assign({}, state, action.deck);
+      var decks = Object.keys(state).filter(filter => filter !== action.title);
+      var newState = {};
+      decks.map(title => (newState[title] = state[title]));
+
+      return Object.assign({}, newState);
+
     default:
       return state;
   }
