@@ -15,20 +15,39 @@ class QuizView extends Component {
   };
   handleCorrect = (noOfQuestions, resultQuestion) => {
     if (this.state.clicks <= noOfQuestions - 1) {
-      this.setState((prevState) => {
+      this.setState(prevState => {
         return {
-        questionNumber: prevState.questionNumber === noOfQuestions - 1 ? prevState.questionNumber : prevState.questionNumber + 1,
-        showQuestion: true,
-        correctAnswers: resultQuestion ? prevState.correctAnswers + 1 : prevState.correctAnswers,
-        clicks: prevState.clicks + 1,
-        showResult: prevState.clicks === noOfQuestions - 1 ? true : false
-        }
+          questionNumber:
+            prevState.questionNumber === noOfQuestions - 1
+              ? prevState.questionNumber
+              : prevState.questionNumber + 1,
+          showQuestion: true,
+          correctAnswers: resultQuestion
+            ? prevState.correctAnswers + 1
+            : prevState.correctAnswers,
+          clicks: prevState.clicks + 1,
+          showResult: prevState.clicks === noOfQuestions - 1 ? true : false
+        };
       });
-    } 
+    }
+  };
+  restart = () => {
+    this.setState({
+      showQuestion: true,
+      showResult: false,
+      correctAnswers: 0,
+      questionNumber: 0,
+      clicks: 0
+    });
   };
   render() {
     const { navigation, entries } = this.props;
-    const { questionNumber, showQuestion, showResult, correctAnswers } = this.state;
+    const {
+      questionNumber,
+      showQuestion,
+      showResult,
+      correctAnswers
+    } = this.state;
     const deckTitle = navigation.getParam("deckTitle", "NO-ID");
     const deck = entries[deckTitle];
     const questions = deck.questions;
@@ -53,11 +72,18 @@ class QuizView extends Component {
     );
 
     const results = showResult && (
-      //const results = 
       <View>
         <Text>
           Score: {correctAnswers} correct answers out of {noOfQuestions}
         </Text>
+        <TouchableOpacity onPress={this.restart}>
+          <Text>Start again</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.goBack()}
+        >
+          <Text>Back to Deck</Text>
+        </TouchableOpacity>
       </View>
     );
     return (
@@ -69,7 +95,9 @@ class QuizView extends Component {
           {showQuestionOrAnswer}
         </View>
         <View>
-          <TouchableOpacity onPress={() => this.handleCorrect(noOfQuestions, "correct")}>
+          <TouchableOpacity
+            onPress={() => this.handleCorrect(noOfQuestions, "correct")}
+          >
             <Text>Correct</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => this.handleCorrect(noOfQuestions)}>
