@@ -1,4 +1,33 @@
 export const firstStore = {
+  Physics: {
+    title: "Physics",
+    questions: [
+      {
+        question: "Who is the founder of the theory of relativity?",
+        answer: "Albert Einstein"
+      },
+      {
+        question: "How many centimeters are 1 meter?",
+        answer: "100"
+      },
+      {
+        question: "What is Ohm's law?",
+        answer: "U/I is constant"
+      },
+      {
+        question: "What is the amount of gravity on the moon?",
+        answer: "1.6 m/(s*s)"
+      },
+      {
+        question: "what’s the difference between weight and mass?",
+        answer: "Mass is the amount of matter in an object, weight is the gravitational force on an object"
+      },
+      {
+        question: "What is the amount of gravity on earth?",
+        answer: "9.8 m/(s*s)"
+      },
+    ]
+  },
   React: {
     title: "React",
     questions: [

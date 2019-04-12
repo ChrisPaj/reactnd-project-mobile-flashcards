@@ -5,28 +5,40 @@ import { connect } from "react-redux";
 class QuizView extends Component {
   state = {
     showQuestion: true,
-    questionNumber: 1
+    showResult: false,
+    correctAnswers: 0,
+    questionNumber: 0,
+    clicks: 0
   };
   toggleQuestionAnswer = () => {
     this.setState(prevState => ({ showQuestion: !prevState.showQuestion }));
   };
-  handleAnswer = (noOfQuestions) => {
-    if(this.state.questionNumber <= noOfQuestions - 1)
-    this.setState({questionNumber: this.state.questionNumber + 1})
-  }
+  handleCorrect = (noOfQuestions, resultQuestion) => {
+    if (this.state.clicks <= noOfQuestions - 1) {
+      this.setState((prevState) => {
+        return {
+        questionNumber: prevState.questionNumber === noOfQuestions - 1 ? prevState.questionNumber : prevState.questionNumber + 1,
+        showQuestion: true,
+        correctAnswers: resultQuestion ? prevState.correctAnswers + 1 : prevState.correctAnswers,
+        clicks: prevState.clicks + 1,
+        showResult: prevState.clicks === noOfQuestions - 1 ? true : false
+        }
+      });
+    } 
+  };
   render() {
-    const { navigation, entries } = this.props
-    const { questionNumber, showQuestion } = this.state
-    const deckTitle = navigation.getParam('deckTitle', 'NO-ID')
-    const deck = entries[deckTitle]
-    const questions = deck.questions
-    const noOfQuestions = questions.length
-    const question = questions[questionNumber - 1].question
-    const answer = questions[questionNumber - 1].answer
+    const { navigation, entries } = this.props;
+    const { questionNumber, showQuestion, showResult, correctAnswers } = this.state;
+    const deckTitle = navigation.getParam("deckTitle", "NO-ID");
+    const deck = entries[deckTitle];
+    const questions = deck.questions;
+    const noOfQuestions = questions.length;
+    const question = questions[questionNumber].question;
+    const answer = questions[questionNumber].answer;
 
     const showQuestionOrAnswer = showQuestion ? (
       <View>
-        <Text>{question}</Text>
+        <Text>{question ? question : null}</Text>
         <TouchableOpacity onPress={this.toggleQuestionAnswer}>
           <Text>Show Answer</Text>
         </TouchableOpacity>
@@ -39,20 +51,32 @@ class QuizView extends Component {
         </TouchableOpacity>
       </View>
     );
+
+    const results = showResult && (
+      //const results = 
+      <View>
+        <Text>
+          Score: {correctAnswers} correct answers out of {noOfQuestions}
+        </Text>
+      </View>
+    );
     return (
       <View style={styles.container}>
         <View>
-          <Text>Question {questionNumber} from {noOfQuestions}</Text>
+          <Text>
+            Question {questionNumber + 1} from {noOfQuestions}
+          </Text>
           {showQuestionOrAnswer}
         </View>
         <View>
-        <TouchableOpacity onPress={() => this.handleAnswer(noOfQuestions)}>
+          <TouchableOpacity onPress={() => this.handleCorrect(noOfQuestions, "correct")}>
             <Text>Correct</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.handleCorrect(noOfQuestions)}>
             <Text>Incorrect</Text>
           </TouchableOpacity>
         </View>
+        {results}
       </View>
     );
   }
