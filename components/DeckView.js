@@ -20,6 +20,9 @@ class DeckView extends Component {
             <Text>Start Quiz</Text>
           </TouchableOpacity>
         </View>
+        <View>
+          <Text>Delete Deck</Text>
+        </View>
       </View>
     );
   }

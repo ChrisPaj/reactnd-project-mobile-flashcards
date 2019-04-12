@@ -15,7 +15,7 @@ class DecksList extends Component {
   _renderItem = ({ item }) => (
     <View>
       <TouchableOpacity onPress={() => this.props.navigation.navigate("DeckView", {deckInfo: item})}>
-        <DeckItem title={item.title} NoOfQuestions={item.questions.length} />
+        <DeckItem title={item.title} NoOfQuestions={item.questions ? item.questions.length : 0} />
       </TouchableOpacity>
     </View>
   );

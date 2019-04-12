@@ -3,22 +3,24 @@ import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
 import { saveDeckTitle } from "../utils/helpers";
+import { NavigationEvents } from "react-navigation";
 
 class NewDeck extends React.Component {
   state = {
     deckTitle: ""
   };
   handleAddDeck = () => {
-    const { addDeck } = this.props;
+    const { addDeck, navigation} = this.props;
     const { deckTitle } = this.state;
     const deck = {
       [deckTitle]: {
         title: deckTitle,
-        questions: []
       }
     };
     saveDeckTitle(deck);
     addDeck(deck);
+    this.setState({deckTitle: ""})
+    navigation.navigate("Decks")
   };
   render() {
     return (
