@@ -14,7 +14,7 @@ class DecksList extends Component {
   _keyExtractor = item => item.title;
   _renderItem = ({ item }) => (
     <View>
-      <TouchableOpacity onPress={() => this.props.navigation.navigate("DeckView", {deckInfo: item})}>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate("DeckView", {deckTitle: item.title})}>
         <DeckItem title={item.title} NoOfQuestions={item.questions ? item.questions.length : 0} />
       </TouchableOpacity>
     </View>
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps(entries) {
+const mapStateToProps = (entries) => {
   return {
     entries
   };

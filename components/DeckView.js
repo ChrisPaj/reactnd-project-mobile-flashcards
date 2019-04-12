@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 
 class DeckView extends Component {
   render() {
-    const { navigation } = this.props;
-    const deckInfo = navigation.getParam('deckInfo', 'NO-ID');
+    const { navigation, entries } = this.props;
+    const deckTitle = navigation.getParam('deckTitle', 'NO-ID');
+    const deckInfo = entries[deckTitle]
     return (
       <View style={styles.container}>
         <View>
@@ -34,4 +35,9 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckView;
+const mapStateToProps = (entries) => {
+  return {
+    entries
+  }}
+
+export default connect(mapStateToProps)(DeckView)
