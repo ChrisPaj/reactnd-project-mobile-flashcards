@@ -26,3 +26,10 @@ export const saveDeckTitle = (deck) => {
 	.then(result => AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(result)))
 	.catch(error => console.log(error))
 }
+
+export const saveQuestion = (deckTitle, question) => {
+	getAsyncStorage()
+	.then(result => result[deckTitle].questions.push(question))
+	.then(result => AsyncStorage.setItem(keyAsyncStorage, JSON.stringify(result)))
+	.catch(error => console.log(error))
+}

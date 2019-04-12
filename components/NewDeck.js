@@ -3,7 +3,6 @@ import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
 import { saveDeckTitle } from "../utils/helpers";
-import { NavigationEvents } from "react-navigation";
 
 class NewDeck extends React.Component {
   state = {

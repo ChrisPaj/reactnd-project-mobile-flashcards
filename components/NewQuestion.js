@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addQuestion } from "../actions";
+import { saveQuestion } from "../utils/helpers";
 
 class NewQuestion extends React.Component {
   state = {
@@ -19,6 +20,7 @@ class NewQuestion extends React.Component {
       question: "",
       answer: ""
     });
+    saveQuestion(deckTitle, {question, answer});
     navigation.navigate("DeckView", {deckTitle: deckTitle})
   };
   render() {
