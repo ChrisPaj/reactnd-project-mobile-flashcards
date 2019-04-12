@@ -20,7 +20,7 @@ class NewQuestion extends React.Component {
       question: "",
       answer: ""
     });
-    saveQuestion(deckTitle, {question, answer});
+    saveQuestion(deckTitle, {question: question, answer: answer});
     navigation.navigate("DeckView", {deckTitle: deckTitle})
   };
   render() {

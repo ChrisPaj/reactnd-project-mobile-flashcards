@@ -14,6 +14,9 @@ export default class Options extends React.Component {
 	deleteAsyncStorage() {
 	  delAsyncStorage()
 	}
+	setupAsyncStorage() {
+	  setAsyncStorage()
+	}
   
 	render() {
 	  return (	
@@ -28,9 +31,9 @@ export default class Options extends React.Component {
 				Delete AsyncStorage
 			  </Text>
 			</TouchableOpacity>
-			<TouchableOpacity onPress={() => this.props.navigation.push("DecksList")}>
+			<TouchableOpacity onPress={this.setupAsyncStorage}>
 			<Text>
-				Move to New Deck
+				Set AsyncStorage
 			</Text>
 			</TouchableOpacity>
 		  </View>
