@@ -9,7 +9,11 @@ import {
 export default class Options extends React.Component {
 
 	showAsyncStorage() {
-	  getAsyncStorage().then(data => console.log(data));
+		getAsyncStorage().then(data => 
+			{
+				console.log(data)
+				console.log(Object.keys(data))}
+		);
 	}
 	deleteAsyncStorage() {
 	  delAsyncStorage()

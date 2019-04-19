@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View, TextInput, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
-import { saveDeckTitle } from "../utils/helpers";
+import { saveDeckTitleToDb } from "../utils/helpers";
 
 class NewDeck extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class NewDeck extends React.Component {
         title: deckTitle,
       }
     };
-    saveDeckTitle(deck);
+    saveDeckTitleToDb(deck);
     addDeck(deck);
     this.setState({deckTitle: ""})
     navigation.navigate("Decks")

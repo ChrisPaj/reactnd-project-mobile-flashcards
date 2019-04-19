@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { deleteDeck } from "../actions";
+import { deleteDeckFromDb } from "../utils/helpers"
 
 class DeckView extends Component {
   shouldComponentUpdate(nextProps){
@@ -15,9 +16,9 @@ class DeckView extends Component {
     const { navigation, delDeck } = this.props;
     const deckTitle = navigation.getParam("deckTitle", "NO-ID");
     //console.log("deckTitle", deckTitle)
+    deleteDeckFromDb(deckTitle)
     delDeck(deckTitle)
     navigation.navigate("Decks")
-    
   }
   render() {
     const { navigation, entries } = this.props;
