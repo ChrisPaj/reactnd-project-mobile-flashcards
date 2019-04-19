@@ -4,8 +4,12 @@ import { connect } from "react-redux";
 import { deleteDeck } from "../actions";
 
 class DeckView extends Component {
-  shouldComponentUpdate(){
-    return false
+  shouldComponentUpdate(nextProps){
+    const { navigation, entries } = nextProps;
+    const deckTitle = navigation.getParam("deckTitle", "NO-ID");
+    const deckInfo = entries[deckTitle];
+    //console.log("entriesscu", deckInfo)
+    return typeof(deckInfo) !== "undefined"
   }
   handleDeleteDeck = () => {
     const { navigation, delDeck } = this.props;
