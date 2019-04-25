@@ -7,7 +7,6 @@ import {
   } from "../utils/helpers";
 
 export default class Options extends React.Component {
-
 	showAsyncStorage() {
 		getAsyncStorage().then(data => 
 			{
@@ -37,7 +36,7 @@ export default class Options extends React.Component {
 			</TouchableOpacity>
 			<TouchableOpacity onPress={this.setupAsyncStorage}>
 			<Text>
-				Set AsyncStorage
+				Set AsyncStorage to default values
 			</Text>
 			</TouchableOpacity>
 		  </View>

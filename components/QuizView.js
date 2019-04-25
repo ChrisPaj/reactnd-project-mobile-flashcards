@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 
 class QuizView extends Component {
+  static navigationOptions = {
+    title: 'Quiz View',
+  }
   state = {
     showQuestion: true,
     showResult: false,

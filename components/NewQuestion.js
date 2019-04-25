@@ -5,6 +5,9 @@ import { addQuestion } from "../actions";
 import { saveQuestionToDb } from "../utils/helpers";
 
 class NewQuestion extends React.Component {
+  static navigationOptions = {
+    title: 'Add New Question',
+  }
   state = {
     question: "",
     answer: ""

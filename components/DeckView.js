@@ -5,6 +5,9 @@ import { deleteDeck } from "../actions";
 import { deleteDeckFromDb } from "../utils/helpers"
 
 class DeckView extends Component {
+  static navigationOptions = {
+    title: 'Deck View',
+  }
   shouldComponentUpdate(nextProps){
     const { navigation, entries } = nextProps;
     const deckTitle = navigation.getParam("deckTitle", "NO-ID");

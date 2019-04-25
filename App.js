@@ -55,9 +55,6 @@ const Tabs = createBottomTabNavigator(
     },
   },
   {
-    navigationOptions: {
-      header: null
-    },
     tabBarOptions: {
       activeTintColor: Platform.OS === "ios" ? purple : white,
       style: {
@@ -71,6 +68,9 @@ const Tabs = createBottomTabNavigator(
         shadowRadius: 6,
         shadowOpacity: 1
       }
+    },
+    navigationOptions: {
+      title: "title"
     }
   }
 );
@@ -78,66 +78,35 @@ const Tabs = createBottomTabNavigator(
 const MainNavigator = createAppContainer(createStackNavigator({
   Home: {
     screen: Tabs,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   DeckView: {
     screen: DeckView,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   QuizView: {
     screen: QuizView,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   NewQuestion: {
     screen: NewQuestion,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   DecksList: {
     screen: DecksList,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   Decks: {
     screen: Decks,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
   },
   QuizView: {
     screen: QuizView,
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-    }),
+  },
+},
+{
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: orange,
+    },
+    headerTintColor: "#000",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
   },
 }));
 
@@ -146,7 +115,7 @@ export default class App extends React.Component {
     return (
       <Provider store={createStore(reducer, applyMiddleware(logger))}> 
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content"/>
-        <MainNavigator />
+        <MainNavigator style={styles.container}/>
       </Provider>
     );
   }
@@ -155,6 +124,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 50
+    
   }
 });

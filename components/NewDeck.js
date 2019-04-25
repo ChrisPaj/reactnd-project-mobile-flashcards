@@ -5,6 +5,9 @@ import { addDeck } from "../actions";
 import { saveDeckTitleToDb } from "../utils/helpers";
 
 class NewDeck extends React.Component {
+  static navigationOptions = {
+    title: 'New Deck'
+  };
   state = {
     deckTitle: ""
   };

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import DecksList from "./DecksList";
 import NewDeck from "./NewDeck";
 import { getAsyncStorage, setAsyncStorage } from "../utils/helpers";
-import { receiveData } from "../actions"
+import { receiveData } from "../actions";
 
 class Decks extends Component {
   componentDidMount() {
@@ -17,8 +17,10 @@ class Decks extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Decks</Text>
-        <DecksList navigation={this.props.navigation}/>
+        <View style={styles.header}>
+          <Text style={styles.text}>Decks</Text>
+        </View>
+        <DecksList navigation={this.props.navigation} />
       </View>
     );
   }
@@ -26,6 +28,21 @@ class Decks extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  header: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginBottom: 30,
+    backgroundColor: "yellow",
+    width: "100%",
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 40,
+    
   }
 });
 
