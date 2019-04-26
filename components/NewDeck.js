@@ -30,7 +30,8 @@ class NewDeck extends React.Component {
     const { deckTitle } = this.state;
     const deck = {
       [deckTitle]: {
-        title: deckTitle
+        title: deckTitle,
+        questions: []
       }
     };
     saveDeckTitleToDb(deck);
