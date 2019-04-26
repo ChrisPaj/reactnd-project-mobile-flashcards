@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { lightBeige, kaminRed, orange } from "../utils/colors";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class QuizView extends Component {
   static navigationOptions = {
@@ -17,7 +18,7 @@ class QuizView extends Component {
   toggleQuestionAnswer = () => {
     this.setState(prevState => ({ showQuestion: !prevState.showQuestion }));
   };
-  handleCorrect = (noOfQuestions, resultQuestion) => {
+  handleAnswer = (noOfQuestions, resultQuestion) => {
     if (this.state.clicks <= noOfQuestions - 1) {
       this.setState(prevState => {
         return {
@@ -33,8 +34,13 @@ class QuizView extends Component {
           showResult: prevState.clicks === noOfQuestions - 1 ? true : false
         };
       });
+      this.cancelNotification();
     }
   };
+  cancelNotification = () => {
+    clearLocalNotification()
+      .then(setLocalNotification)
+  }
   restart = () => {
     this.setState({
       showQuestion: true,
@@ -107,13 +113,13 @@ class QuizView extends Component {
       <View>
         <TouchableOpacity
           style={styles.touchableOpacity}
-          onPress={() => this.handleCorrect(noOfQuestions, "correct")}
+          onPress={() => this.handleAnswer(noOfQuestions, "correct")}
         >
           <Text style={styles.textTouchableOpacity}>Correct</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.touchableOpacity}
-          onPress={() => this.handleCorrect(noOfQuestions)}
+          onPress={() => this.handleAnswer(noOfQuestions)}
         >
           <Text style={styles.textTouchableOpacity}>Incorrect</Text>
         </TouchableOpacity>

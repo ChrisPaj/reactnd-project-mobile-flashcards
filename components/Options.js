@@ -3,7 +3,10 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import {
 	setAsyncStorage,
 	getAsyncStorage,
-	delAsyncStorage
+	delAsyncStorage,
+	getAsyncStorageNotification,
+	delAsyncStorageNotification,
+
   } from "../utils/helpers";
 
 export default class Options extends React.Component {
@@ -19,6 +22,13 @@ export default class Options extends React.Component {
 	}
 	setupAsyncStorage() {
 	  setAsyncStorage()
+	}
+	showAsyncStorageNotification() {
+		getAsyncStorageNotification().then(data => console.log(data)	
+		);
+	}
+	deleteAsyncStorageNotification() {
+	  delAsyncStorageNotification()
 	}
   
 	render() {
@@ -37,6 +47,16 @@ export default class Options extends React.Component {
 			<TouchableOpacity onPress={this.setupAsyncStorage}>
 			<Text>
 				Set AsyncStorage to default values
+			</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={this.showAsyncStorageNotification}>
+			<Text>
+			 	show AsyncStorageNotification in console
+			</Text>
+			</TouchableOpacity>
+			<TouchableOpacity onPress={this.deleteAsyncStorageNotification}>
+			<Text>
+			 	delete AsyncStorageNotification 
 			</Text>
 			</TouchableOpacity>
 		  </View>

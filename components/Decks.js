@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { connect } from "react-redux";
 import DecksList from "./DecksList";
 import NewDeck from "./NewDeck";
-import { getAsyncStorage, setAsyncStorage } from "../utils/helpers";
+import { getAsyncStorage, setAsyncStorage, setLocalNotification, getAsyncStorageNotification } from "../utils/helpers";
 import { lightBeige, kaminRed, orange } from "../utils/colors";
 import { receiveData } from "../actions";
 
@@ -16,7 +16,7 @@ class Decks extends Component {
     },
     headerTitleStyle: {
       fontWeight: 'bold',
-    },
+    }, 
   };
   componentDidMount() {
     getAsyncStorage()
@@ -24,6 +24,7 @@ class Decks extends Component {
         return results === null ? setAsyncStorage() : results;
       })
       .then(result => this.props.dispatch(receiveData(result)));
+      setLocalNotification()
   }
   render() {
     return (
