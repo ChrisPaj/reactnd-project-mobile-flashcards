@@ -4,9 +4,20 @@ import { connect } from "react-redux";
 import DecksList from "./DecksList";
 import NewDeck from "./NewDeck";
 import { getAsyncStorage, setAsyncStorage } from "../utils/helpers";
+import { lightBeige, kaminRed, orange } from "../utils/colors";
 import { receiveData } from "../actions";
 
 class Decks extends Component {
+  static navigationOptions = {
+    title: "Mobile Flashcards",
+    headerTintColor: "white",
+    headerStyle: {
+      backgroundColor: orange,
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   componentDidMount() {
     getAsyncStorage()
       .then(results => {
@@ -27,13 +38,12 @@ class Decks extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: lightBeige,
+    alignItems: "center"
   },
   header: {
-    marginLeft: "auto",
-    marginRight: "auto",
     marginBottom: 30,
-    backgroundColor: "yellow",
     width: "100%",
     height: 80,
     justifyContent: 'center',
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "center",
     fontSize: 40,
+    color: kaminRed
     
   }
 });

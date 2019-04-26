@@ -7,8 +7,8 @@ import { Provider } from "react-redux";
 import reducer from "./reducers";
 import logger from "./middleware/logger"
 import { createStackNavigator, createAppContainer, createBottomTabNavigator } from "react-navigation";
-import { purple, white, orange } from "./utils/colors";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { white, orange, lightBeige, kaminRed } from "./utils/colors";
+import { FontAwesome} from "@expo/vector-icons";
 import Options from "./components/Options";
 import DeckView from "./components/DeckView";
 import QuizView from "./components/QuizView";
@@ -27,7 +27,9 @@ function UdaciStatusBar({ backgroundColor, ...props }) {
 const Tabs = createBottomTabNavigator(
   {
     Decks: {
-      screen: Decks,
+      screen: createStackNavigator({
+        Decks
+    }),
       navigationOptions: {
         tabBarLabel: "Decks",
         tabBarIcon: ({ tintColor }) => (
@@ -36,7 +38,9 @@ const Tabs = createBottomTabNavigator(
       }
     },
     NewDeck: {
-      screen: NewDeck,
+      screen: createStackNavigator({
+        NewDeck
+    }),
       navigationOptions: {
         tabBarLabel: "New Deck",
         tabBarIcon: ({ tintColor }) => (
@@ -56,10 +60,11 @@ const Tabs = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: Platform.OS === "ios" ? purple : white,
+      activeTintColor: lightBeige,
+      inactiveTintColor: white,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === "ios" ? white : purple,
+        backgroundColor: kaminRed,
         shadowColor: "rgba(0, 0, 0, 0.24)",
         shadowOffset: {
           width: 0,
@@ -70,7 +75,7 @@ const Tabs = createBottomTabNavigator(
       }
     },
     navigationOptions: {
-      title: "title"
+      header: null
     }
   }
 );
@@ -103,7 +108,7 @@ const MainNavigator = createAppContainer(createStackNavigator({
     headerStyle: {
       backgroundColor: orange,
     },
-    headerTintColor: "#000",
+    headerTintColor: white,
     headerTitleStyle: {
       fontWeight: "bold",
     },
@@ -114,7 +119,7 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider store={createStore(reducer, applyMiddleware(logger))}> 
-        <UdaciStatusBar backgroundColor={purple} barStyle="light-content"/>
+        <UdaciStatusBar backgroundColor={kaminRed} barStyle="light-content"/>
         <MainNavigator style={styles.container}/>
       </Provider>
     );

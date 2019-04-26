@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { kaminRed, orange } from "../utils/colors";
 
 export default function DeckItem(props) {
   return (
@@ -17,13 +18,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 30,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 22,
+    paddingBottom: 22,
+    borderRadius: 10,
+    borderWidth: 5,
+    borderColor: orange,
+    backgroundColor: kaminRed,
   },
   deck: {
     fontSize: 30,
-    marginBottom: 10,
+    marginBottom: 10, 
+    color: orange
 
   },
   questions: {
     fontSize: 20,
+    color: orange
   }
 });
