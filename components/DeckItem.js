@@ -1,16 +1,36 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, Text, Animated, TouchableOpacity } from "react-native";
 import { kaminRed, orange } from "../utils/colors";
 
-export default function DeckItem(props) {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.deck}>{props.title}</Text>
-      <Text style={styles.questions}>{props.NoOfQuestions + " Questions"}</Text>
-    </View>
-  );
+class DeckItem extends Component {
+  state = {
+    springValue: new Animated.Value(1)
+  };
+  animationFunction() {
+    const { springValue } = this.state;
+    Animated.sequence([
+			Animated.timing(springValue, { duration: 5, toValue: 1.2}),
+			Animated.spring(springValue, { toValue: 1, friction: 5})
+		  ]).start()
+  }
+  render() {
+    const { title, NoOfQuestions, item, navigation } = this.props;
+    const { springValue } = this.state;
+    return (
+      <TouchableOpacity onPress={() => {
+        this.animationFunction()
+        setTimeout(() => navigation.navigate("DeckView", {deckTitle: item.title}), 350) 
+        }}>
+        <Animated.View
+          style={[styles.container, { transform: [{ scale: springValue }] }]}
+        >
+          <Text style={styles.deck}>{title}</Text>
+          <Text style={styles.questions}>{NoOfQuestions + " Questions"}</Text>
+        </Animated.View>
+      </TouchableOpacity>
+    );
+  }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -25,16 +45,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 5,
     borderColor: orange,
-    backgroundColor: kaminRed,
+    backgroundColor: kaminRed
   },
   deck: {
     fontSize: 30,
-    marginBottom: 10, 
+    marginBottom: 10,
     color: orange
-
   },
   questions: {
     fontSize: 20,
     color: orange
   }
 });
+
+export default DeckItem;

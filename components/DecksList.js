@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  Button,
   View,
   FlatList,
-  TouchableOpacity,
-  Text
 } from "react-native";
 import { connect } from "react-redux";
 import DeckItem from "./DeckItem";
@@ -14,9 +11,12 @@ class DecksList extends Component {
   _keyExtractor = item => item.title;
   _renderItem = ({ item }) => (
     <View>
-      <TouchableOpacity onPress={() => this.props.navigation.navigate("DeckView", {deckTitle: item.title})}>
-        <DeckItem title={item.title} NoOfQuestions={item.questions ? item.questions.length : 0} />
-      </TouchableOpacity>
+      <DeckItem
+        title={item.title}
+        NoOfQuestions={item.questions ? item.questions.length : 0}
+        navigation={this.props.navigation}
+        item={item}
+      />
     </View>
   );
   render() {
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-  },
+  }
 });
 
-const mapStateToProps = (entries) => {
+const mapStateToProps = entries => {
   return {
     entries
   };
-}
+};
 export default connect(mapStateToProps)(DecksList);
