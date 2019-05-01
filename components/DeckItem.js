@@ -6,20 +6,19 @@ class DeckItem extends Component {
   state = {
     springValue: new Animated.Value(1)
   };
-  animationFunction() {
+  animationFunction(navigation, title) {
     const { springValue } = this.state;
     Animated.sequence([
-			Animated.timing(springValue, { duration: 5, toValue: 1.2}),
-			Animated.spring(springValue, { toValue: 1, friction: 5})
-		  ]).start()
+			Animated.timing(springValue, { duration: 1, toValue: 1.05}),
+			Animated.spring(springValue, { toValue: 1, friction: 12})
+		  ]).start(() => navigation.navigate("DeckView", {deckTitle: title}))
   }
   render() {
-    const { title, NoOfQuestions, item, navigation } = this.props;
+    const { title, NoOfQuestions, navigation } = this.props;
     const { springValue } = this.state;
     return (
       <TouchableOpacity onPress={() => {
-        this.animationFunction()
-        setTimeout(() => navigation.navigate("DeckView", {deckTitle: item.title}), 350) 
+        this.animationFunction(navigation, title)
         }}>
         <Animated.View
           style={[styles.container, { transform: [{ scale: springValue }] }]}

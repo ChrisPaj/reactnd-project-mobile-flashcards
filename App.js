@@ -48,7 +48,7 @@ const Tabs = createBottomTabNavigator(
         )
       }
     },
-    Options: {
+    /* Options: {
       screen: Options,
       navigationOptions: {
         tabBarLabel: "Options",
@@ -56,7 +56,7 @@ const Tabs = createBottomTabNavigator(
           <FontAwesome name="wrench" size={30} color={tintColor} />
         )
       }
-    },
+    }, */
   },
   {
     tabBarOptions: {
